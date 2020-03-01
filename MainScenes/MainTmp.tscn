@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Rotator.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MainScenes/MainTmp.gd" type="Script" id=2]
+
+[node name="MainTmp" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Rotator" parent="." instance=ExtResource( 1 )]
+position = Vector2( 512, 108.034 )
+
+[node name="PinSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 512, 506.212 )
+__meta__ = {
+"_editor_description_": ""
+}
