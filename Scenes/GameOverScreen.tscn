@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://FontTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scenes/FinalScore.gd" type="Script" id=2]
+[ext_resource path="res://Assets/end_screen.png" type="Texture" id=3]
+
+[node name="GameOverScreen" type="Node2D"]
+
+[node name="end_screen" type="Sprite" parent="."]
+self_modulate = Color( 1, 0.490196, 0.490196, 0.717647 )
+position = Vector2( 541.96, 308.82 )
+scale = Vector2( 2.32937, 2.26234 )
+texture = ExtResource( 3 )
+
+[node name="StaticgameOver" type="RichTextLabel" parent="."]
+margin_left = 371.0
+margin_top = 122.0
+margin_right = 670.0
+margin_bottom = 261.0
+theme = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "GameOver"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticgameOver2" type="RichTextLabel" parent="."]
+margin_left = 371.0
+margin_top = 371.016
+margin_right = 670.0
+margin_bottom = 510.016
+theme = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "R: Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalScore" type="RichTextLabel" parent="."]
+anchor_left = 0.312
+anchor_right = 0.312
+margin_left = 490.582
+margin_top = 232.016
+margin_right = 789.582
+margin_bottom = 371.016
+theme = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "0"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

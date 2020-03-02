@@ -1,16 +1,49 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Rotator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MainScenes/MainTmp.gd" type="Script" id=2]
+[ext_resource path="res://Assets/rotator.png" type="Texture" id=3]
+[ext_resource path="res://Assets/end_screen.png" type="Texture" id=4]
+[ext_resource path="res://FontTheme.tres" type="Theme" id=5]
 
 [node name="MainTmp" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="end_screen" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 559.368, 332.912 )
+scale = Vector2( 2.39039, 2.25768 )
+texture = ExtResource( 4 )
+
 [node name="Rotator" parent="." instance=ExtResource( 1 )]
-position = Vector2( 512, 108.034 )
+position = Vector2( 512, 144.892 )
+scale = Vector2( 0.5, 0.5 )
 
 [node name="PinSpawnPoint" type="Position2D" parent="."]
-position = Vector2( 512, 506.212 )
+position = Vector2( 512, 478.559 )
 __meta__ = {
 "_editor_description_": ""
+}
+
+[node name="Sprite" type="Sprite" parent="PinSpawnPoint"]
+modulate = Color( 1, 1, 1, 0.513726 )
+position = Vector2( 0, 100 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 300 )
+
+[node name="ScoreText" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+margin_left = 494.552
+margin_top = -33.8716
+margin_right = 705.681
+margin_bottom = 219.346
+theme = ExtResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "0
+"
+__meta__ = {
+"_edit_use_anchors_": false
 }
