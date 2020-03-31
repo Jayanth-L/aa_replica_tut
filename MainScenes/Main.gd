@@ -10,10 +10,11 @@ extends Node2D
 var pin_path = preload("res://Scenes/Pin.tscn")
 
 
-# Load Game Manager Singleton Script
+# get access to Game Manager Singleton Script
 onready var game_manager = get_node("/root/GameManager")
 
 
+# Fires for every frame in the game
 func _process(delta):
 	# when everytime spacebar or jump is pressed spawn a pin at the spawing point in Scene
 	if Input.is_action_just_pressed("jump"):

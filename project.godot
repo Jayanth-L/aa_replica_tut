@@ -15,8 +15,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Aa Replica"
-run/main_scene="res://MainScenes/MainTmp.tscn"
+config/name="Demo AA replica"
+run/main_scene="res://MainScenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

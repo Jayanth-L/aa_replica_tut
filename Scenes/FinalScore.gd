@@ -20,5 +20,7 @@ func _ready():
 func _process(delta):
 	# When the button "r" associated with the restart input event in godot input settings is pressed the restart the game
 	if Input.is_action_just_pressed("restart"):
+		# Reset the Game Score to 0
+		game_manager.game_score = 0
 		# This below statement reloads the MainTmp Game Scene so the game strats again
-		get_tree().change_scene("res://MainScenes/MainTmp.tscn")
+		get_tree().change_scene("res://MainScenes/Main.tscn")

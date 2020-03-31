@@ -12,16 +12,16 @@ var target
 
 # preloading the Global GameManager Script so we can access the current game score
 onready var game_manager = get_node("/root/GameManager")
-# preloading the GameOverTscn scene so we can instance this scene whenever it s needed
+# preloading the GameOverScreen scene so we can instance this scene whenever it s needed
 onready var end_screen = preload("res://Scenes/GameOverScreen.tscn")
 
 
-# Defining the speed of the pi, which moves towards the rotatar to get pinned
+# Defining the speed of the pin, which moves towards the rotator to get pinned
 export var move_speed = 10
 # A boolean variable to control the movement of the pin, by default the Pin moves upwards when instantiated 
 var should_move = true
 
-# predifining this varialble as global so that we can acces this variables at any section in this script
+# declaring this varialble as global so that we can access this variable at any section in this script
 # later this variables holds the instantaneouss transform of the Rotator when the pin hits rotator
 var target_transform_at_hit
 # this variable is used to get the transform or coordinates of the point where the pin hits the rotator so we can hook up the pin to rotater at the hit point
@@ -37,18 +37,21 @@ func _physics_process(delta):
 	if should_move:
 		position.y -= move_speed * delta
 	
-	# Note: The below elif section contains a lot Linear algebra in it the concept is quite advanced Watch Associated YouTube Video for more detailed explaination
+	# Note: The below "elif" section contains a lot Linear algebra in it the concept is quite advanced Watch Associated YouTube Video for more detailed explaination
 	# if the pin is not suppossed to move means that we have hit the rotator we will make the Pin hooked to the rotator and follow the rotator
 	elif target:
-		# Note: This algorithm involves Linear Algebra Math (See line 68 also)
-		# In this two lines we rotate Basis Vectors of "PinRotateHookOrigin" to align or displace "PinRotateHook" to the Pin rotator hit co-ordinates so we can 
-		# hook up the pin to the rotator
-		var x_basis = target.get_node("PinRotateHookOrigin").global_transform.x.rotated(rotate_angle)
-		var y_basis = target.get_node("PinRotateHookOrigin").global_transform.y.rotated(rotate_angle)
-		# After rotating the basis vectors then apply the resulting the transform to the pin at every frame so that the pin remains hooked to the Rotator hit spot
-		transform = Transform2D(x_basis, y_basis, target.get_node("PinRotateHookOrigin").global_transform.origin)
+		# This below function hook ups the pin to rotator
+		hookUpPinToRotator()
 
-		
+
+func hookUpPinToRotator():
+	# Note: This algorithm involves Linear Algebra Math (See line 68 also)
+	# In this two lines we rotate Basis Vectors of "PinRotateHookOrigin" to align or displace "PinRotateHook" to the Pin rotator hit co-ordinates so we can 
+	# hook up the pin to the rotator
+	var x_basis = target.get_node("PinRotateHookOrigin").global_transform.x.rotated(rotate_angle)
+	var y_basis = target.get_node("PinRotateHookOrigin").global_transform.y.rotated(rotate_angle)
+	# After rotating the basis vectors then apply the resulting the transform to the pin at every frame so that the pin remains hooked to the Rotator hit spot
+	transform = Transform2D(x_basis, y_basis, target.get_node("PinRotateHookOrigin").global_transform.origin)
 
 
 # This function is fired when the Pin gets a "body_entered" signal from itself, the Area2D Pin "body_entered" signal is connected to this below function
@@ -57,7 +60,7 @@ func _on_Pin_body_entered(body):
 	# When the rotator collided with the Rotator the its win increment score with 1
 	game_manager.game_score += 1
 	# Update text in the Main Scene Score text with the current game_manager script score 
-	get_tree().get_root().get_node("MainTmp").get_node("ScoreText").text = str(game_manager.game_score)
+	get_tree().get_root().get_node("Main").get_node("ScoreText").text = str(game_manager.game_score)
 	# It is obvious that when the pin hits rotator pin should doesn't move, it will be hooked to Rotator, so setting should_move to false will tell the _physics_process to no move Pin
 	should_move = false
 	# This is used because when the Pin hits Rotator the collision has already occured we don't want to detect further more unnecessary collision
